@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <windows.h>
 #include <string>
+
 using namespace std;
 
 class ShowMenu {
@@ -32,6 +33,10 @@ public:
 		int memory;
 		string procesor;
 	};
+	/* zrobić jako metode dodawania produktów
+	void newProduct(int id, string name, int price, string description, double display, int ram, string system,int memory, string procesor) {
+
+	}*/
 
 	//showing Menu and operating on "GUI"
 	ShowMenu() {
@@ -42,17 +47,21 @@ public:
 		orgData.NIP = "8596479653";
 		orgData.telephoneNumber = "999333555";
 
+		//creatig an array with max 1000 product list
+		//allocated true/false | id | name | price | description | display | ram | system | memory | procesor
+		string productTable[1000][10];
+
 		//creating products for shop
-		product prod;
-		prod.id = 0;
-		prod.name = "Samsung s9+";
-		prod.price = 2800;
-		prod.description = "Fajne to";
-		prod.display = 6.2;
-		prod.RAM = 6;
-		prod.system = "Android 9";
-		prod.memory = 256;
-		prod.procesor = "Fajny";
+		productTable[0][0] = "true";
+		productTable[0][1] = "0";
+		productTable[0][2] = "Samsung s9+";
+		productTable[0][3] = "2800";
+		productTable[0][4] = "Fajne to";
+		productTable[0][5] = "6.2";
+		productTable[0][6] = "6";
+		productTable[0][7] = "Android 9";
+		productTable[0][8] = "256";
+		productTable[0][9] = "Fajny";
 
 		//creating menu variables
 		int MainMenu, MenuContact;
@@ -64,15 +73,15 @@ public:
 		switch (MainMenu)
 		{
 		case 1:
-			cout << prod.id << endl;
-			cout << prod.name << endl;
-			cout << prod.price << endl;
-			cout << prod.description << endl;
-			cout << prod.display << endl;
-			cout << prod.RAM << endl;
-			cout << prod.system << endl;
-			cout << prod.memory << endl;
-			cout << prod.procesor << endl;
+			cout << productTable[0][1] << endl;
+			cout << productTable[0][2] << endl;
+			cout << productTable[0][3] << endl;
+			cout << productTable[0][4] << endl;
+			cout << productTable[0][5] << endl;
+			cout << productTable[0][6] << endl;
+			cout << productTable[0][7] << endl;
+			cout << productTable[0][8] << endl;
+			cout << productTable[0][9] << endl;
 
 			cout << "Wcisnij 'q' aby wyjsc";
 			exit = "null";
