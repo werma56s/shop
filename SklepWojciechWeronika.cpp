@@ -4,6 +4,36 @@
 
 using namespace std;
 
+//Class virtual+konstruktory wieloargumetowy+Destruktor+polimorfizm
+class Product
+{
+public:
+	virtual void SHOOW() = 0;
+	//czysta funkcja wirtualna
+};
+
+class Laptops :public Product
+{
+private:
+
+	string name, parameter;
+	float price;
+
+public:
+	//konsturktor wieloargumetowy
+	Laptops(string name, string parameter, float price)
+	{
+		this->name = name;
+		this->parameter = parameter;
+		this->price = price;
+	}
+	virtual void SHOOW()
+	{
+		cout << "Nazwa: " << name << endl;
+		cout << "Parametry: " << endl << parameter << endl;
+		cout << "Cena: " << price << endl;
+	}
+};
 class ShowMenu {
 public:
 	//creating structure for Mail
@@ -22,21 +52,12 @@ public:
 		string telephoneNumber;
 	};
 
-	struct product {
-		int id;
-		string name;
-		int price;
-		string description;
-		double display;
-		int RAM;
-		string system;
-		int memory;
-		string procesor;
-	};
 	/* zrobić jako metode dodawania produktów
 	void newProduct(int id, string name, int price, string description, double display, int ram, string system,int memory, string procesor) {
 
 	}*/
+	
+
 
 	//showing Menu and operating on "GUI"
 	ShowMenu() {
@@ -47,21 +68,16 @@ public:
 		orgData.NIP = "8596479653";
 		orgData.telephoneNumber = "999333555";
 
-		//creatig an array with max 1000 product list
-		//allocated true/false | id | name | price | description | display | ram | system | memory | procesor
-		string productTable[1000][10];
-
-		//creating products for shop
-		productTable[0][0] = "true";
-		productTable[0][1] = "0";
-		productTable[0][2] = "Samsung s9+";
-		productTable[0][3] = "2800";
-		productTable[0][4] = "Fajne to";
-		productTable[0][5] = "6.2";
-		productTable[0][6] = "6";
-		productTable[0][7] = "Android 9";
-		productTable[0][8] = "256";
-		productTable[0][9] = "Fajny";
+		Product** tab = new Product * [3];
+		tab[0] = new Laptops("Lenovo Legion Y540-17",
+			"Procesor:Intel Core i7-9750H\nPamiec:8 GB\nGrafika:NVIDIA GeForce GTX 1660Ti\nTyp ekranu:Matowy, LED, IPS",
+			4332.47);
+		tab[1] = new Laptops("ASUS VivoBook 14 R459UA",
+			"Procesor:Intel Pentium Gold 4417U\nPamiec:4 GB\nGrafika:Intel HD Graphics 610\nTyp ekranu:Matowy, LED",
+			1400.20);
+		tab[2] = new Laptops("Dell Inspiron 5490",
+			"Procesor:Intel Core i5-10210U\nPamiec:8 GB\nGrafika:Intel UHD Graphics\nTyp ekranu:Matowy, LED, IPS",
+			3002.30);
 
 		//creating menu variables
 		int MainMenu, MenuContact;
@@ -73,15 +89,16 @@ public:
 		switch (MainMenu)
 		{
 		case 1:
-			cout << productTable[0][1] << endl;
-			cout << productTable[0][2] << endl;
-			cout << productTable[0][3] << endl;
-			cout << productTable[0][4] << endl;
-			cout << productTable[0][5] << endl;
-			cout << productTable[0][6] << endl;
-			cout << productTable[0][7] << endl;
-			cout << productTable[0][8] << endl;
-			cout << productTable[0][9] << endl;
+			
+			for (int i = 0; i < 3; i++)
+			{
+				cout << "_____________________________________" << endl;
+				cout << "Produkt numer: " << i + 1 << endl;
+				cout << "_____________________________________" << endl;
+				tab[i]->SHOOW();
+				cout << "/////////////////////////////////////" << endl;
+				Sleep(1000);
+			}
 
 			cout << "Wcisnij 'q' aby wyjsc";
 			exit = "null";
@@ -161,5 +178,6 @@ class Shop :public ShowMenu {
 };
 int main()
 {
+
 	ShowMenu* Menu = new ShowMenu();
 }
